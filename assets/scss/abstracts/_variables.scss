@@ -1,0 +1,74 @@
+// grid
+$column-num: 12;
+$gutter: 30px;
+
+// color
+$primary: #00807E;
+$primary-100: #64C3BF;
+$primary-300: #007572;
+$primary-900: #004E4D;
+$secondary: #818A91;
+$secondary-100: #F7F7F7;
+$secondary-200: #FAFAFA;
+$light: #fff;
+$dark: #000;
+
+$colors: (
+    primary:$primary,
+    primary-100:$primary-100,
+    primary-900:$primary-900,
+    secondary: $secondary,
+    secondary-100: $secondary-100,
+    secondary-200: $secondary-200,
+    light:$light,
+    dark:$dark
+);
+// spacers
+$space-num: 12;
+$space-base: 4px;
+
+$spacers: (
+    1: $space-base*1,
+    2: $space-base*2,
+    3: $space-base*3,
+    4: $space-base*4,
+    5: $space-base*5,
+    6: $space-base*6,
+    7: $space-base*7,
+    8: $space-base*8,
+    9: $space-base*9,
+    10: $space-base*10,
+    11: $space-base*11,
+    12: $space-base*12
+);
+
+// flexbox
+$justifys: (
+    flex-start,
+    center,
+    flex-end,
+    space-between,
+    space-around
+);
+$aligns: (
+    stretch,
+    flex-start,
+    center,
+    flex-end,
+    baseline
+);
+
+// breakpoints
+$breakpoint-xxl: 1400px;
+$breakpoint-xl: 1200px;
+$breakpoint-lg: 992px;
+$breakpoint-md: 768px;
+$breakpoint-sm: 576px;
+
+$breakpoints: (
+    xxl:$breakpoint-xxl,
+    xl:$breakpoint-xl,
+    lg:$breakpoint-lg,
+    md:$breakpoint-md,
+    sm:$breakpoint-sm
+);

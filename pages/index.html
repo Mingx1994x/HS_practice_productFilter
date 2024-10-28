@@ -7,13 +7,200 @@
     <title>index</title>
   </head>
   <body>
-    <%- include('./layout/header'); -%>
-
-    <h1 class="index-title">我是首頁</h1>
-    <img src="../assets/images/cat.jpg" style="width: 300px;" alt="cat">
-
-    <%- include('./layout/footer'); -%>
-
+    <section class="section">
+      <div class="container">
+        <div class="wrapper cover-wrapper">
+          <div class="row">
+            <div class="col-md-6 col-12">
+              <div class="d-flex flex-column">
+                <img
+                  src="https://raw.githubusercontent.com/hexschool/2022-web-layout-training/refs/heads/main/js_week5/main_img.png"
+                  class="mb-5"
+                />
+                <img
+                  src="https://raw.githubusercontent.com/hexschool/2022-web-layout-training/refs/heads/main/js_week5/logo.png"
+                  class="d-none d-sm-block"
+                />
+              </div>
+            </div>
+            <div class="col-md-6 col-12">
+              <h1 class="form-title">
+                <i class="bi bi-plus-circle"></i>新增旅遊套票
+              </h1>
+              <form action="">
+                <div class="d-flex mb-4">
+                  <label for="ticketName" class="form-label">套票名稱</label>
+                  <input
+                    type="text"
+                    class="form-control form-custom w-100"
+                    id="ticketName"
+                    placeholder="請填寫套票名稱"
+                  />
+                </div>
+                <div class="d-flex mb-4">
+                  <label for="ticketImgUrl" class="form-label">圖片網址</label>
+                  <input
+                    type="text"
+                    class="form-control form-custom w-100"
+                    id="ticketImgUrl"
+                    placeholder="請填寫圖片網址"
+                  />
+                </div>
+                <div class="d-flex mb-4">
+                  <label for="ticketRegion" class="form-label">景點地區</label>
+                  <select
+                    class="form-control form-custom form-select form-secondary  w-100"
+                    id="ticketRegion"
+                  >
+                    <option value="" selected>請選擇景點地區</option>
+                    <option value="台北">台北</option>
+                    <option value="台中">台中</option>
+                    <option value="高雄">高雄</option>
+                  </select>
+                </div>
+                <div class="d-flex mb-4">
+                  <label for="ticketPrice" class="form-label">套票金額</label>
+                  <input
+                    type="number"
+                    class="form-control form-custom w-100"
+                    id="ticketPrice"
+                    placeholder="請填寫套票金額"
+                  />
+                </div>
+                <div class="d-flex mb-4">
+                  <label for="ticketSetNum" class="form-label">套票組數</label>
+                  <input
+                    type="number"
+                    class="form-control form-custom w-100"
+                    id="ticketSetNum"
+                    placeholder="請填寫套票組數"
+                  />
+                </div>
+                <div class="d-flex mb-4">
+                  <label for="ticketLevel" class="form-label">套票星級</label>
+                  <input
+                    type="number"
+                    class="form-control form-custom w-100"
+                    id="ticketLevel"
+                    placeholder="請填寫套票星級"
+                  />
+                </div>
+                <div class="d-flex mb-6">
+                  <label for="ticketTextarea" class="form-label"
+                    >套票描述</label
+                  >
+                  <textarea
+                    class="form-control form-custom w-100"
+                    placeholder="請填寫套票描述（限 100 字）"
+                    id="ticketTextarea"
+                    style="height: 111px;"
+                  ></textarea>
+                </div>
+                <div class="d-flex">
+                  <button
+                    type="button"
+                    class="btn btn-primary ms-auto"
+                    id="addTicket"
+                  >
+                    新增套票
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <main class="main">
+      <div class="container">
+        <div class="wrapper d-flex align-items-center flex-wrap gap-4">
+          <select
+            class="form-control form-select filter-select"
+            id="ticketRegion"
+          >
+            <option value="" selected>請選擇景點地區</option>
+            <option value="台北">台北</option>
+            <option value="台中">台中</option>
+            <option value="高雄">高雄</option>
+          </select>
+          <p>本次搜尋共 6 筆資料</p>
+        </div>
+        <ul class="row row-gap-8 mt-12">
+          <li class="col-12 col-sm-6 col-lg-4">
+            <div class="roundImgCard">
+              <img
+                src="https://github.com/hexschool/2022-web-layout-training/blob/main/js_week5/travel_1.png?raw=true"
+                alt=""
+              />
+              <p class="card-badge badge-primary-100">台北</p>
+              <div class="card-body">
+                <p class="card-badge-sm badge-primary">8.6</p>
+                <h3 class="card-title">綠島自由行套裝行程</h3>
+                <p class="card-content">
+                  嚴選超高CP值綠島自由行套裝行程，多種綠島套裝組合，提供台東綠島來回船票、綠島環島機車、綠島民宿住宿，行程加贈『綠島浮潛體驗』以及『綠島生態導覽』，讓你用輕鬆的綠島套裝自由行，也能深度認識綠島在地文化。
+                </p>
+                <div class="card-info">
+                  <p>
+                    <i class="bi bi-exclamation-circle-fill"></i>剩下最後 8 組
+                  </p>
+                  <p class="infoPrice">
+                    TWD<span class="highlight">$1,280</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li class="col-12 col-sm-6 col-lg-4">
+            <div class="roundImgCard">
+              <img
+                src="https://github.com/hexschool/2022-web-layout-training/blob/main/js_week5/travel_1.png?raw=true"
+                alt=""
+              />
+              <p class="card-badge badge-primary-100">台北</p>
+              <div class="card-body">
+                <p class="card-badge-sm badge-primary">8.6</p>
+                <h3 class="card-title">綠島自由行套裝行程</h3>
+                <p class="card-content">
+                  嚴選超高CP值綠島自由行套裝行程，多種綠島套裝組合，提供台東綠島來回船票、綠島環島機車、綠島民宿住宿，行程加贈『綠島浮潛體驗』以及『綠島生態導覽』，讓你用輕鬆的綠島套裝自由行，也能深度認識綠島在地文化。
+                </p>
+                <div class="card-info">
+                  <p>
+                    <i class="bi bi-exclamation-circle-fill"></i>剩下最後 8 組
+                  </p>
+                  <p class="infoPrice">
+                    TWD<span class="highlight">$1,280</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li class="col-12 col-sm-6 col-lg-4">
+            <div class="roundImgCard">
+              <img
+                src="https://github.com/hexschool/2022-web-layout-training/blob/main/js_week5/travel_1.png?raw=true"
+                alt=""
+              />
+              <p class="card-badge badge-primary-100">台北</p>
+              <div class="card-body">
+                <p class="card-badge-sm badge-primary">8.6</p>
+                <h3 class="card-title">綠島自由行套裝行程</h3>
+                <p class="card-content">
+                  嚴選超高CP值綠島自由行套裝行程，多種綠島套裝組合，提供台東綠島來回船票、綠島環島機車、綠島民宿住宿，行程加贈『綠島浮潛體驗』以及『綠島生態導覽』，讓你用輕鬆的綠島套裝自由行，也能深度認識綠島在地文化。
+                </p>
+                <div class="card-info">
+                  <p>
+                    <i class="bi bi-exclamation-circle-fill"></i>剩下最後 8 組
+                  </p>
+                  <p class="infoPrice">
+                    TWD<span class="highlight">$1,280</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </main>
     <script type="module" src="../main.js"></script>
   </body>
 </html>

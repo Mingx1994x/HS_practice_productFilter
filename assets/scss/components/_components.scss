@@ -1,0 +1,18 @@
+// btn
+.btn {
+    font-size: 20px;
+    line-height: 1.25;
+    border: 0;
+    border-radius: map-get($spacers, 1);
+    padding: map-get($spacers, 3) map-get($spacers, 10);
+}
+
+.btn-primary {
+    background-color: $primary;
+    color: $light;
+
+    &:hover,
+    &:focus {
+        background-color: $primary-900;
+    }
+}

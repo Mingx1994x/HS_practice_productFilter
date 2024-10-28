@@ -1,0 +1,58 @@
+// grid system
+
+.row {
+    margin-left: - calc($gutter / 2);
+    margin-right: - calc($gutter / 2);
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    @for $i from 1 through $column-num {
+        .col-#{$i} {
+            width: calc($i / $column-num) * 100%;
+            padding-right: calc($gutter / 2);
+            padding-left: calc($gutter / 2);
+        }
+    }
+
+    @include media-up(sm) {
+        @for $i from 1 through $column-num {
+            .col-sm-#{$i} {
+                width: calc($i / $column-num) * 100%;
+                padding-right: calc($gutter / 2);
+                padding-left: calc($gutter / 2);
+            }
+        }
+    }
+
+    @include media-up(md) {
+        @for $i from 1 through $column-num {
+            .col-md-#{$i} {
+                width: calc($i / $column-num) * 100%;
+                padding-right: calc($gutter / 2);
+                padding-left: calc($gutter / 2);
+            }
+        }
+    }
+
+    @include media-up(lg) {
+        @for $i from 1 through $column-num {
+            .col-lg-#{$i} {
+                width: calc($i / $column-num) * 100%;
+                padding-right: calc($gutter / 2);
+                padding-left: calc($gutter / 2);
+            }
+        }
+    }
+
+    @include media-up(xl) {
+        @for $i from 1 through $column-num {
+            .col-xl-#{$i} {
+                width: calc($i / $column-num) * 100%;
+                padding-right: calc($gutter / 2);
+                padding-left: calc($gutter / 2);
+            }
+        }
+    }
+
+}

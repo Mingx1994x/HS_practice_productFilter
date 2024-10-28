@@ -1,0 +1,55 @@
+// RWD
+@mixin media-xl {
+    @media screen and (max-width:1399px) {
+        @content;
+    }
+}
+
+@mixin media-lg {
+    @media screen and (max-width:1199px) {
+        @content;
+    }
+}
+
+// pad
+@mixin media-md {
+    @media screen and (max-width:991px) {
+        @content;
+    }
+}
+
+// large-mobile
+@mixin media-sm-larger {
+    @media screen and (max-width:767px) {
+        @content;
+    }
+}
+
+// mobile
+@mixin media-sm {
+    @media screen and (max-width:576px) {
+        @content;
+    }
+}
+
+@mixin media-down($breakpoint) {
+    @media screen and (max-width: map-get($breakpoints, $breakpoint)) {
+        @content;
+    }
+}
+
+@mixin media-up($breakpoint) {
+    @media screen and (min-width: map-get($breakpoints, $breakpoint)) {
+        @content;
+    }
+}
+
+// flex
+@mixin justifyContent($justify: flex-start) {
+
+    justify-content: $justify;
+}
+
+@mixin alignItems($align: stretch) {
+    align-items: $align;
+}

@@ -1,5 +1,23 @@
-@import './layout/header.scss';
-@import './layout/footer.scss';
+// bootstrap icon
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
+//abstract
+@import './abstracts/variables';
+@import './abstracts/mixin';
 
+// base
+@import './base/reset';
+@import './base/base';
 
+// component
+@import './components/grid';
+@import './components/utilities';
+@import './components/form';
+@import './components/components';
+@import './components/card';
+
+// layout
+// @import './layout/header.scss';
+// @import './layout/footer.scss';
+
+// pages
 @import './pages/index.scss';
