@@ -1,3 +1,7 @@
+//scss
 import './assets/scss/all.scss';
 
-console.log("Hello world!");
+
+//javascript
+import './assets/js/ticketData';
+// console.log("Hello world!");
