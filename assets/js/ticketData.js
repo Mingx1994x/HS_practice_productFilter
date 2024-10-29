@@ -106,6 +106,8 @@ const ticketDescription = document.querySelector('#ticketDescription');
 const addTicket = document.querySelector('#addTicket');
 const filterRegion = document.querySelector('#filterRegion');
 const filterNums = document.querySelector('#filterNums');
+const cantFindArea = document.querySelector('.cantFind-area');
+
 
 //card內容
 const ticketCard = (ticketData) => {
@@ -114,14 +116,14 @@ const ticketCard = (ticketData) => {
     ticketData.forEach(item => {
         const ticketList = document.createElement('li');
         ticketList.className = 'col-12 col-sm-6 col-lg-4';
-        //a.ticket-link
-        const ticketLink = document.createElement('a');
-        ticketLink.href = '#';
-        ticketLink.className = 'ticket-link';
 
         //div.roundImgCard
         const ticketCard = document.createElement('div');
         ticketCard.className = 'roundImgCard';
+        //a.ticket-link
+        const ticketLink = document.createElement('a');
+        ticketLink.href = '#';
+        ticketLink.className = 'ticket-link';
         //img
         const cardImg = document.createElement('img');
         cardImg.src = item.imgUrl;
@@ -169,12 +171,13 @@ const ticketCard = (ticketData) => {
         cardBody.appendChild(cardInfo);
 
         //div.roundImgCard>img+p.card-badge+div.card-body
-        ticketCard.appendChild(cardImg);
+        ticketLink.appendChild(cardImg);
+        ticketCard.appendChild(ticketLink);
         ticketCard.appendChild(imgBadge);
         ticketCard.appendChild(cardBody);
 
-        ticketLink.appendChild(ticketCard);
-        ticketList.appendChild(ticketLink);
+
+        ticketList.appendChild(ticketCard);
 
         // console.log(ticketList);
         ticketDisplay.appendChild(ticketList);
@@ -186,16 +189,21 @@ const renderTicket = (ticketData) => {
     let dataNum = ticketData.length;
     if (dataNum !== 0) {
         filterNums.textContent = `本次搜尋共 ${dataNum} 筆資料`;
+        cantFindArea.style.display = 'none';
+        ticketDisplay.style.display = 'flex';
         ticketCard(ticketData);
     } else {
+        filterNums.textContent = `查無此關鍵字資料`;
         ticketDisplay.style.display = 'none';
+        cantFindArea.style.display = 'block';
+
     }
 }
-
 
 //監聽
 addTicket.addEventListener('click', () => {
     let newTicket = new Object;
+    let errorMsg = '';
     newTicket.id = data.length;
     newTicket.name = ticketName.value.trim();
     newTicket.imgUrl = ticketImgUrl.value.trim();
@@ -204,6 +212,33 @@ addTicket.addEventListener('click', () => {
     newTicket.group = ticketSetNum.value.trim();
     newTicket.price = ticketPrice.value.trim();
     newTicket.rate = ticketRank.value.trim();
+
+    if (!newTicket.name) {
+        errorMsg = '套票名稱為必填!';
+    } else if (!newTicket.imgUrl) {
+        errorMsg = '圖片網址為必填!';
+    } else if (!newTicket.area) {
+        errorMsg = '請選擇地區!';
+    } else if (newTicket.price <= 0) {
+        errorMsg = '套票金額必須大於 0!';
+        ticketPrice.value = '';
+    } else if (newTicket.group < 0) {
+        errorMsg = '套票組數必須大於等於0!';
+        ticketSetNum.value = '';
+    } else if (newTicket.rate < 1 || newTicket.rate > 10) {
+        errorMsg = '套票星級必須在 1 至 10 之間!';
+        ticketRank.value = '';
+    } else if (newTicket.description > 100 || !newTicket.description) {
+        errorMsg = '套票描述必填，且不能超過 100 字!';
+    }
+
+    if (errorMsg) {
+        window.alert(errorMsg);
+        return;
+    } else {
+        window.alert('新增成功');
+    }
+
     data.push(newTicket);
     // console.log(data);
     ticketForm.reset();
@@ -213,20 +248,32 @@ addTicket.addEventListener('click', () => {
 
 filterRegion.addEventListener('change', () => {
     let filterData = new Array;
+    let AreaData = ['台北', '台中', '高雄', '花蓮'];
     if (!filterRegion.value) {
         renderTicket(data);
-    } else if (filterRegion.value === '台北') {
-        filterData = data.filter(item => item.area === '台北');
+    } else if (filterRegion.value === AreaData[0]) {
+        filterData = data.filter(item => item.area === AreaData[0]);
         renderTicket(filterData);
-    } else if (filterRegion.value === '台中') {
-        filterData = data.filter(item => item.area === '台中');
+    } else if (filterRegion.value === AreaData[1]) {
+        filterData = data.filter(item => item.area === AreaData[1]);
         renderTicket(filterData);
-    } else if (filterRegion.value === '高雄') {
-        filterData = data.filter(item => item.area === '高雄');
+    } else if (filterRegion.value === AreaData[2]) {
+        filterData = data.filter(item => item.area === AreaData[2]);
+        renderTicket(filterData);
+    } else if (filterRegion.value === AreaData[3]) {
+        filterData = data.filter(item => item.area === AreaData[3]);
         renderTicket(filterData);
     }
 })
 
-
-
 renderTicket(data);
+
+// const ticketLink = document.querySelectorAll('.ticket-link');
+// if (ticketLink) {
+//     ticketLink.forEach(item => {
+//         item.addEventListener('click', e => {
+//             // console.log(ticketLink);
+//             e.preventDefault();
+//         })
+//     })
+// }
