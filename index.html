@@ -5,8 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>index</title>
-    <script type="module" crossorigin src="/HS_practice_productFilter/assets/main-fab75128.js"></script>
-    <link rel="stylesheet" href="/HS_practice_productFilter/assets/main-ba7d4651.css">
+    <script type="module" crossorigin src="/HS_practice_productFilter/assets/main-00180ccb.js"></script>
+    <link rel="stylesheet" href="/HS_practice_productFilter/assets/main-d583afa7.css">
   </head>
   <body>
     <section class="section">
@@ -117,15 +117,16 @@
       <div class="container">
         <div class="wrapper d-flex align-items-center flex-wrap gap-4">
           <select
-            class="form-control form-select filter-select"
+            class="form-control form-select form-secondary filter-select"
             id="filterRegion"
           >
             <option value="" selected>請選擇景點地區</option>
             <option value="台北">台北</option>
             <option value="台中">台中</option>
             <option value="高雄">高雄</option>
+            <option value="花蓮">花蓮</option>
           </select>
-          <p id="filterNums">本次搜尋共 6 筆資料</p>
+          <p id="filterNums" class="text-secondary">本次搜尋共 6 筆資料</p>
         </div>
         <ul class="row row-gap-8 mt-12" id="ticketDisplay">
           <!-- <li class="col-12 col-sm-6 col-lg-4">
@@ -202,7 +203,7 @@
           </li> -->
         </ul>
         <div class="cantFind-area mt-12">
-          <h3>查無此關鍵字資料</h3>
+          <!-- <p class="contentMsg">查無此關鍵字資料</p> -->
           <img
             src="https://github.com/hexschool/2022-web-layout-training/blob/main/js_week5/no_found.png?raw=true"
             alt=""
@@ -212,5 +213,18 @@
     </main>
     
     <!-- <script src="../assets/js/ticketData.js"></script> -->
+    <script>
+          window.onload=()=>{
+            const ticketLink = document.querySelectorAll('.ticket-link');
+            // console.log(ticketLink);
+            if (ticketLink) {
+              ticketLink.forEach(item => {
+                item.addEventListener('click', e => {
+                    e.preventDefault();
+              });
+          })
+      }
+          }
+    </script>
   </body>
 </html>
