@@ -210,19 +210,185 @@
       </div>
     </main>
     <script type="module" src="../main.js"></script>
-    <!-- <script src="../assets/js/ticketData.js"></script> -->
-    <script>
-          window.onload=()=>{
-            const ticketLink = document.querySelectorAll('.ticket-link');
-            // console.log(ticketLink);
-            if (ticketLink) {
-              ticketLink.forEach(item => {
-                item.addEventListener('click', e => {
-                    e.preventDefault();
-              });
-          })
+    <script type="module">
+      import axios from 'axios';
+      // console.log(axios);
+      const ticketForm = document.querySelector('#ticketAddForm');
+      const ticketName = document.querySelector('#ticketName');
+      const ticketImgUrl = document.querySelector('#ticketImgUrl');
+      const ticketPrice = document.querySelector('#ticketPrice');
+      const ticketRegion = document.querySelector('#ticketRegion');
+      const ticketSetNum = document.querySelector('#ticketSetNum');
+      const ticketRank = document.querySelector('#ticketRank');
+      const ticketDescription = document.querySelector('#ticketDescription');
+      const addTicket = document.querySelector('#addTicket');
+
+      const filterRegion = document.querySelector('#filterRegion');
+      const filterNums = document.querySelector('#filterNums');
+      const ticketDisplay = document.querySelector('#ticketDisplay');
+      const ticketLink = document.querySelectorAll('.ticket-link');
+      const cantFindArea = document.querySelector('.cantFind-area');
+
+      const dataUrl1='https://raw.githubusercontent.com/hexschool/js-training/main/travelAPI-lv1.json';
+      const dataUrl2='https://raw.githubusercontent.com/hexschool/js-training/main/travelApi.json';
+      let ticketsData=new Array;
+
+
+      const init=()=>{
+        loadData();
+      };
+
+      // getData
+      const loadData=()=>{
+        axios.get(dataUrl2).then((response)=>{
+          // console.log(response);
+          ticketsData=response.data.data;
+          // console.log(ticketsData);
+          renderTicket(ticketsData);
+        }).catch((error)=>{
+          renderTicket(ticketsData);
+          // console.log(error);
+          window.alert(`${error.response.data}`)
+        })
       }
-          }
+
+      //card內容
+      const ticketCard = (ticketData) => {
+            // const ticketDisplay = document.querySelector('#ticketDisplay');
+            ticketDisplay.innerHTML = '';
+            ticketData.forEach(item => {
+                const ticketList = document.createElement('li');
+                ticketList.className = 'col-12 col-sm-6 col-lg-4';
+
+                const ticketCard = document.createElement('div');
+                ticketCard.className = 'roundImgCard';
+                const ticketLink = document.createElement('a');
+                ticketLink.href = '#';
+                ticketLink.className = 'ticket-link';
+
+                const cardImg = document.createElement('img');
+                cardImg.src = item.imgUrl;
+                const imgBadge = document.createElement('p');
+                imgBadge.className = 'card-badge badge-primary-100';
+                imgBadge.textContent = item.area;
+
+                const cardBody = document.createElement('div');
+                cardBody.className = 'card-body';
+                const cardBodyBadge = document.createElement('p');
+                cardBodyBadge.className = 'card-badge-sm badge-primary';
+                cardBodyBadge.textContent = item.rate;
+                const cardTitle = document.createElement('h3');
+                cardTitle.className = 'card-title';
+                cardTitle.textContent = item.name;
+                const cardContent = document.createElement('p');
+                cardContent.textContent = item.description;
+
+                const cardInfo = document.createElement('div');
+                cardInfo.className = 'card-info';
+                const groupInfo = document.createElement('p');
+                const groupNoneHtml = `<i class="bi bi-exclamation-circle-fill"></i>限時搶購`;
+                const groupLeftHtml = `<i class="bi bi-exclamation-circle-fill"></i>剩下最後 ${item.group} 組`;
+                groupInfo.innerHTML = (item.group == 0) ? groupNoneHtml : groupLeftHtml;
+                const ticketInfo = document.createElement('p');
+                ticketInfo.className = 'infoPrice';
+                ticketInfo.innerHTML = `TWD<span class="highlight">$${item.price}</span>`;
+
+                cardInfo.appendChild(groupInfo);
+                cardInfo.appendChild(ticketInfo);
+
+                cardBody.appendChild(cardBodyBadge);
+                cardBody.appendChild(cardTitle);
+                cardBody.appendChild(cardContent);
+                cardBody.appendChild(cardInfo);
+
+                ticketLink.appendChild(cardImg);
+                ticketCard.appendChild(ticketLink);
+                ticketCard.appendChild(imgBadge);
+                ticketCard.appendChild(cardBody);
+
+                ticketList.appendChild(ticketCard);
+                // console.log(ticketList);
+                ticketDisplay.appendChild(ticketList);
+              });
+      };
+
+      //渲染
+      const renderTicket = (ticketData) => {
+            let dataNum = ticketData.length;
+            if (dataNum !== 0) {
+              filterNums.textContent = `本次搜尋共 ${dataNum} 筆資料`;
+              cantFindArea.style.display = 'none';
+              ticketDisplay.style.display = 'flex';
+            ticketCard(ticketData);
+            } else {
+              filterNums.textContent = `查無此關鍵字資料`;
+              ticketDisplay.style.display = 'none';
+              cantFindArea.style.display = 'block';
+              }
+      };
+
+      //監聽
+      addTicket.addEventListener('click', () => {
+        let newTicket = new Object;
+        let errorMsg = '';
+        let lastIndex=ticketsData.length-1;
+        newTicket.id = Number(ticketsData[lastIndex].id)+1;
+        newTicket.name = ticketName.value.trim();
+        newTicket.imgUrl = ticketImgUrl.value.trim();
+        newTicket.area = ticketRegion.value.trim();
+        newTicket.description = ticketDescription.value.trim();
+        newTicket.group = ticketSetNum.value.trim();
+        newTicket.price = ticketPrice.value.trim();
+        newTicket.rate = ticketRank.value.trim();
+        if (!newTicket.name) {
+            errorMsg = '套票名稱為必填!';
+        } else if (!newTicket.imgUrl) {
+            errorMsg = '圖片網址為必填!';
+        } else if (!newTicket.area) {
+            errorMsg = '請選擇地區!';
+        } else if (newTicket.price <= 0) {
+            errorMsg = '套票金額必須大於 0!';
+            ticketPrice.value = '';
+        } else if (newTicket.group < 0) {
+            errorMsg = '套票組數必須大於等於0!';
+            ticketSetNum.value = '';
+        } else if (newTicket.rate < 1 || newTicket.rate > 10) {
+            errorMsg = '套票星級必須在 1 至 10 之間!';
+            ticketRank.value = '';
+        } else if (newTicket.description > 100 || !newTicket.description) {
+            errorMsg = '套票描述必填，且不能超過 100 字!';
+        }
+        if (errorMsg) {
+            window.alert(errorMsg);
+            return;
+        } else {
+            window.alert('新增成功');
+        }
+        ticketsData.push(newTicket);
+        // console.log(data);
+        ticketForm.reset();
+        filterRegion.value = '';
+        renderTicket(ticketsData);
+      });
+
+      filterRegion.addEventListener('change', () => {
+        let filterData = new Array;
+        // let AreaData = ['台北', '台中', '高雄', '花蓮'];
+        // console.log(filterRegion.value);
+        if(!filterRegion.value){
+          renderTicket(ticketsData);
+        }else{
+          filterData=ticketsData.filter(ticketData=>ticketData.area===filterRegion.value);
+          renderTicket(filterData);
+        }
+      });
+
+      ticketDisplay.addEventListener('click',e=>{
+        e.preventDefault();
+      });
+
+
+      init();
     </script>
   </body>
 </html>
