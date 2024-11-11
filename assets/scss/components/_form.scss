@@ -31,7 +31,11 @@
 
     &.filter-select {
         width: 255px;
-        margin-right: map-get($spacers, 3);
+        margin-right: map-get($spacers, 8);
 
     }
+}
+
+.form-text {
+    text-wrap: nowrap;
 }
