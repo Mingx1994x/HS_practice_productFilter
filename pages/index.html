@@ -215,14 +215,17 @@
         area:{
           presence:{
             allowEmpty: false,
-            message:'^景點地區為必填欄位!'
+            message:'^景點地區為必填!'
           }
         },
         description:{
           length: {
             minimum: 1,
             maximum:100,
-            message:'^套票描述必填，且不能超過100字元'
+            tokenizer:function(value){
+              return value.replace(/[^a-zA-Z0-9\u4e00-\u9fa5]/g,'').split('')
+            },
+            message:'^套票描述必填，且不能超過100字'
             }
         },
         group:{
