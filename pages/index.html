@@ -177,57 +177,8 @@
               </div>
             </div>
           </li> -->
-          <!-- <li class="col-12 col-sm-6 col-lg-4">
-            <div class="roundImgCard">
-              <img
-                src="https://github.com/hexschool/2022-web-layout-training/blob/main/js_week5/travel_1.png?raw=true"
-                alt=""
-              />
-              <p class="card-badge badge-primary-100">台北</p>
-              <div class="card-body">
-                <p class="card-badge-sm badge-primary">8.6</p>
-                <h3 class="card-title">綠島自由行套裝行程</h3>
-                <p class="card-content">
-                  嚴選超高CP值綠島自由行套裝行程，多種綠島套裝組合，提供台東綠島來回船票、綠島環島機車、
-                </p>
-                <div class="card-info">
-                  <p>
-                    <i class="bi bi-exclamation-circle-fill"></i>剩下最後 8 組
-                  </p>
-                  <p class="infoPrice">
-                    TWD<span class="highlight">$1,280</span>
-                  </p>
-                </div>
-              </div>
-            </div>
-          </li> -->
-          <!-- <li class="col-12 col-sm-6 col-lg-4">
-            <div class="roundImgCard">
-              <img
-                src="https://github.com/hexschool/2022-web-layout-training/blob/main/js_week5/travel_1.png?raw=true"
-                alt=""
-              />
-              <p class="card-badge badge-primary-100">台北</p>
-              <div class="card-body">
-                <p class="card-badge-sm badge-primary">8.6</p>
-                <h3 class="card-title">綠島自由行套裝行程</h3>
-                <p class="card-content">
-                  嚴選超高CP值綠島自由行套裝行程，多種綠島套裝組合，提供台東綠島來回船票、綠島環島機車、綠島民宿住宿，行程加贈『綠島浮潛體驗』以及『綠島生態導覽』，讓你用輕鬆的綠島套裝自由行，也能深度認識綠島在地文化。
-                </p>
-                <div class="card-info">
-                  <p>
-                    <i class="bi bi-exclamation-circle-fill"></i>剩下最後 8 組
-                  </p>
-                  <p class="infoPrice">
-                    TWD<span class="highlight">$1,280</span>
-                  </p>
-                </div>
-              </div>
-            </div>
-          </li> -->
         </ul>
         <div class="cantFind-area mt-12">
-          <!-- <p class="contentMsg">查無此關鍵字資料</p> -->
           <img
             src="https://github.com/hexschool/2022-web-layout-training/blob/main/js_week5/no_found.png?raw=true"
             alt=""
@@ -242,6 +193,7 @@
 
       import axios from 'axios';
       import validate from "validate.js";
+      import Swal from 'sweetalert2';
 
       let constraints={
         name:{
@@ -270,13 +222,13 @@
           length: {
             minimum: 1,
             maximum:100,
-            message:'^套票描述必填，且不能超過 100 字'
+            message:'^套票描述必填，且不能超過100字元'
             }
         },
         group:{
           numericality:{
             greaterThan: 0,
-            message:'^套票組數必須為大於等於0'
+            message:'^套票組數必須為大於0'
           },
           type:{
             type:'integer',
@@ -407,7 +359,6 @@
                 ticketCard.appendChild(cardBody);
 
                 ticketList.appendChild(ticketCard);
-                // console.log(ticketList);
                 ticketDisplay.appendChild(ticketList);
               });
       };
@@ -482,12 +433,12 @@
         removeMessage();
         let validateResults=validate(newTicket, constraints);
         if(validateResults){
-          // console.log(validateResults);
           let messageTargets=messageItem(validateResults);
           messageTargets.forEach(target=>renderMessage(target,validateResults));
           return
         }else{
-          window.alert('新增成功');
+          // window.alert('新增成功');
+          successAlert();
         }
 
         ticketsData.push(newTicket);
@@ -546,6 +497,17 @@
       const removeMessage=()=>{
         const errorMessages=document.querySelectorAll('.form-invalid');
         errorMessages.forEach(errorMessage=>errorMessage.remove());
+      }
+
+      const successAlert=()=>{
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "套票新增成功！",
+          showConfirmButton: true,
+          confirmButtonColor:'#00807E',
+          timer: 1500
+        });
       }
 
 
