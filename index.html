@@ -12,9 +12,9 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <script type="module" crossorigin src="/HS_practice_productFilter/assets/index-52b1952d.js"></script>
-    <link rel="modulepreload" crossorigin href="/HS_practice_productFilter/assets/main-991531d5.js">
-    <link rel="stylesheet" href="/HS_practice_productFilter/assets/main-6f83683c.css">
+    <script type="module" crossorigin src="/HS_practice_productFilter/assets/index-a3c9a05b.js"></script>
+    <link rel="modulepreload" crossorigin href="/HS_practice_productFilter/assets/main-a43ff13e.js">
+    <link rel="stylesheet" href="/HS_practice_productFilter/assets/main-3a5a85c4.css">
   </head>
   <body>
     <section class="section">
@@ -137,8 +137,8 @@
     </section>
     <main class="main">
       <div class="container">
-        <div class="wrapper d-flex align-items-flex-start">
-          <div class="d-flex align-items-center">
+        <div class="wrapper filterWrapper">
+          <div class="form-filter">
             <select
               class="form-control form-select form-secondary filter-select"
               id="filterRegion"
@@ -153,7 +153,7 @@
               本次搜尋共 6 筆資料
             </p>
           </div>
-          <div id="chart" class="ms-auto"></div>
+          <div id="chart" class="ticketChart"></div>
         </div>
         <ul class="row row-gap-8 mt-12" id="ticketDisplay">
           <!-- <li class="col-12 col-sm-6 col-lg-4">
@@ -180,57 +180,8 @@
               </div>
             </div>
           </li> -->
-          <!-- <li class="col-12 col-sm-6 col-lg-4">
-            <div class="roundImgCard">
-              <img
-                src="https://github.com/hexschool/2022-web-layout-training/blob/main/js_week5/travel_1.png?raw=true"
-                alt=""
-              />
-              <p class="card-badge badge-primary-100">台北</p>
-              <div class="card-body">
-                <p class="card-badge-sm badge-primary">8.6</p>
-                <h3 class="card-title">綠島自由行套裝行程</h3>
-                <p class="card-content">
-                  嚴選超高CP值綠島自由行套裝行程，多種綠島套裝組合，提供台東綠島來回船票、綠島環島機車、
-                </p>
-                <div class="card-info">
-                  <p>
-                    <i class="bi bi-exclamation-circle-fill"></i>剩下最後 8 組
-                  </p>
-                  <p class="infoPrice">
-                    TWD<span class="highlight">$1,280</span>
-                  </p>
-                </div>
-              </div>
-            </div>
-          </li> -->
-          <!-- <li class="col-12 col-sm-6 col-lg-4">
-            <div class="roundImgCard">
-              <img
-                src="https://github.com/hexschool/2022-web-layout-training/blob/main/js_week5/travel_1.png?raw=true"
-                alt=""
-              />
-              <p class="card-badge badge-primary-100">台北</p>
-              <div class="card-body">
-                <p class="card-badge-sm badge-primary">8.6</p>
-                <h3 class="card-title">綠島自由行套裝行程</h3>
-                <p class="card-content">
-                  嚴選超高CP值綠島自由行套裝行程，多種綠島套裝組合，提供台東綠島來回船票、綠島環島機車、綠島民宿住宿，行程加贈『綠島浮潛體驗』以及『綠島生態導覽』，讓你用輕鬆的綠島套裝自由行，也能深度認識綠島在地文化。
-                </p>
-                <div class="card-info">
-                  <p>
-                    <i class="bi bi-exclamation-circle-fill"></i>剩下最後 8 組
-                  </p>
-                  <p class="infoPrice">
-                    TWD<span class="highlight">$1,280</span>
-                  </p>
-                </div>
-              </div>
-            </div>
-          </li> -->
         </ul>
         <div class="cantFind-area mt-12">
-          <!-- <p class="contentMsg">查無此關鍵字資料</p> -->
           <img
             src="https://github.com/hexschool/2022-web-layout-training/blob/main/js_week5/no_found.png?raw=true"
             alt=""
