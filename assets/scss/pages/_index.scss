@@ -51,7 +51,6 @@
     @include media-sm {
       padding: map-get($spacers, 4);
     }
-
   }
 
   .form-title {
@@ -69,6 +68,36 @@
         font-weight: 700 !important;
       }
 
+    }
+  }
+
+  &.filterWrapper {
+    display: flex;
+    align-items: flex-start;
+
+    @include media-sm {
+      flex-direction: column;
+    }
+
+    .ticketChart {
+      margin-left: auto;
+
+      @include media-sm {
+        margin: auto;
+      }
+    }
+
+
+  }
+
+  .form-filter {
+    display: flex;
+    align-items: center;
+
+    @include media-md {
+      flex-direction: column;
+      align-items: flex-start;
+      row-gap: map-get($spacers, 3);
     }
   }
 }

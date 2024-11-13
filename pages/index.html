@@ -134,8 +134,8 @@
     </section>
     <main class="main">
       <div class="container">
-        <div class="wrapper d-flex align-items-flex-start">
-          <div class="d-flex align-items-center">
+        <div class="wrapper filterWrapper">
+          <div class="form-filter">
             <select
               class="form-control form-select form-secondary filter-select"
               id="filterRegion"
@@ -150,7 +150,7 @@
               本次搜尋共 6 筆資料
             </p>
           </div>
-          <div id="chart" class="ms-auto"></div>
+          <div id="chart" class="ticketChart"></div>
         </div>
         <ul class="row row-gap-8 mt-12" id="ticketDisplay">
           <!-- <li class="col-12 col-sm-6 col-lg-4">
@@ -417,20 +417,26 @@
         return chartArea.indexOf(`${filterArea}`);
       }
 
+      // 取得新增套票表單資料
+      const getTicket=(ticket)=>{
+        let lastIndex=ticketsData.length-1;
+        ticket.id = Number(ticketsData[lastIndex].id)+1;
+        ticket.name = ticketName.value.trim();
+        ticket.imgUrl = ticketImgUrl.value.trim();
+        ticket.area = ticketRegion.value.trim();
+        ticket.description = ticketDescription.value.trim();
+        ticket.group = Number(ticketSetNum.value.trim());
+        ticket.price = Number(ticketPrice.value.trim());
+        ticket.rate = Number(ticketRank.value.trim());
+        return ticket;
+      }
+
       //監聽
       addTicket.addEventListener('click', () => {
         let newTicket = new Object;
-        let errorMsg = '';
-        let lastIndex=ticketsData.length-1;
-        newTicket.id = Number(ticketsData[lastIndex].id)+1;
-        newTicket.name = ticketName.value.trim();
-        newTicket.imgUrl = ticketImgUrl.value.trim();
-        newTicket.area = ticketRegion.value.trim();
-        newTicket.description = ticketDescription.value.trim();
-        newTicket.group = Number(ticketSetNum.value.trim());
-        newTicket.price = Number(ticketPrice.value.trim());
-        newTicket.rate = Number(ticketRank.value.trim());
         removeMessage();
+
+        getTicket(newTicket);
         let validateResults=validate(newTicket, constraints);
         if(validateResults){
           let messageTargets=messageItem(validateResults);
@@ -439,11 +445,11 @@
         }else{
           // window.alert('新增成功');
           successAlert();
+          ticketForm.reset();
         }
 
-        ticketsData.push(newTicket);
-        ticketForm.reset();
         filterRegion.value = '';
+        ticketsData.push(newTicket);
         renderTicket(ticketsData);
         renderChart(ticketsData,chartPatternColors);
       });
